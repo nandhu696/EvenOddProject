@@ -1,25 +1,42 @@
-notepad Jenkinsfile
 pipeline {
     agent any
+
     tools {
         maven 'M3'
     }
+
     stages {
         stage('Checkout') {
-            steps { checkout scm }
+            steps {
+                checkout scm
+            }
         }
+
         stage('Build') {
-            steps { bat 'mvn clean compile' }
+            steps {
+                bat 'mvn clean compile'
+            }
         }
+
         stage('Test') {
-            steps { bat 'mvn test' }
+            steps {
+                bat 'mvn test'
+            }
         }
+
         stage('Package') {
-            steps { bat 'mvn package' }
+            steps {
+                bat 'mvn package'
+            }
         }
     }
+
     post {
-        success { echo 'Java Maven JUnit build completed successfully' }
-        failure { echo 'Build failed' }
+        success {
+            echo 'Even Odd Maven JUnit build completed successfully'
+        }
+        failure {
+            echo 'Build failed'
+        }
     }
 }
